@@ -5,6 +5,6 @@ use Log;
 
 Log::new('tests/test.csv');
 my $result_key   = "Anna";
-is( $result_key, "Anna", "Make this actually take the csv as input" );
+is( $result_key, "Anna", "Test does nothing yet" );
 
 done_testing();

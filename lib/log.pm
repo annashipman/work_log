@@ -7,11 +7,12 @@ use Text::CSV;
 
 
 sub new {
+    my $csv_name = shift;
     my @rows;
     my $csv = Text::CSV->new ( { binary => 1 } )
         or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
-    open my $fh, "<:encoding(utf8)", "tests/test.csv" or die "test.csv: $!";
+    open my $fh, "<:encoding(utf8)", $csv_name or die $csv_name . ": $!";
         while ( my $row = $csv->getline( $fh ) ) {
             print $row->[0] . "\n";
             push @rows, $row;
