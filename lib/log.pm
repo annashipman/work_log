@@ -7,46 +7,24 @@ use Text::CSV;
 
 
 sub new {
-    my $class    = shift;
-    my $csv_file = shift;
+        my @rows;
+        my $csv = Text::CSV->new ( { binary => 1 } )
+                        or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
-    my $self = {};
-    bless $self, $class;
+        open my $fh, "<:encoding(utf8)", "tests/test.csv" or die "test.csv: $!";
+        while ( my $row = $csv->getline( $fh ) ) {
+            print $row->[0] . "\n";
+            push @rows, $row;
+        }
+        $csv->eof or $csv->error_diag();
+        close $fh;
 
-    $self->{'csv'} = Text::CSV->new({ binary => 1 });
-    open $self->{'csv_handle'}, '<:encoding(utf8)', $csv_file
-        or return undef;
+        $csv->eol ("\r\n");
 
-    $self->{'column_names'} = $self->read_column_names();
-    return unless scalar @{$self->{'column_names'}};
-    return unless $self->has_mandatory_columns();
+        open $fh, ">:encoding(utf8)", "new.csv" or die "new.csv: $!";
+        $csv->print ($fh, $_) for @rows;
+        close $fh or die "new.csv: $!";
 
-    return $self;
-}
-
-sub read_csv {
-    my $self = shift;
-
-    while ( my $row = $self->get_row() ) {
-        print "hello" . $row;
-    }
-
-    return;
-}
-
-sub get_row {
-    my $self = shift;
-    return $self->{'csv'}->getline_hr( $self->{'csv_handle'} );
-}
-
-sub read_column_names {
-    my $self = shift;
-
-    my $names = $self->{'csv'}->getline( $self->{'csv_handle'} );
-    return unless scalar @$names;
-
-    $self->{'csv'}->column_names( @$names );
-    return $names;
 }
 
 1;
