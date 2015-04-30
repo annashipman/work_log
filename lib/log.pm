@@ -17,10 +17,13 @@ sub new {
 
         while ( my $row = $csv->getline( $fh ) ) {
             my $time = $row->[0];
+            #my $activity = $row->[1];
+            print $time;
             print "is time correct?";
             chomp(my $answer = <>);
-            print $answer;
-            push @rows, $row;
+            if ($answer eq "yes") {
+              push @rows, $row;
+            }
         }
     $csv->eof or $csv->error_diag();
     close $fh;
