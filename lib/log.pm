@@ -19,6 +19,7 @@ sub new {
             my $time = $row->[0];
             #my $activity = $row->[1];
             print $time;
+            print "is time correct?\n";
             chomp(my $answer = <STDIN>);
             if ($answer eq "yes") {
               push @rows, $row;
