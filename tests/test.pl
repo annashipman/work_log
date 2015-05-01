@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Text::CSV;
 use Log;
 
 my $fakefile = "yes\nno\nyes\n";
@@ -12,6 +13,22 @@ open my $fh, "<", \$fakefile, or die "could not open fake file: $!";
 Log::new('tests/test.csv');
 my $result_key   = "Anna";
 is( $result_key, "Anna", "Test does nothing yet" );
+
+close $fh;
+
+my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
+open $fh, "<", "new.csv", or die "could not open new.csv: $!";
+
+my $row = $csv->getline( $fh );
+is_deeply ( $row, ["A0","A1","A2","A3"], "A row is yes" );
+
+$row = $csv->getline( $fh );
+is_deeply ( $row, ["C0","C1","C2","C3"], "B row was 'no' so 2nd row is C" );
+
+$row = $csv->getline( $fh );
+is ($row, undef, "There are only two rows");
+
+
 
 #Log::new('tests/not_csv.csv');
 #is (1, 1, "what do I need to do to make it die?");
