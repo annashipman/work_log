@@ -5,14 +5,10 @@ use Text::CSV;
 use Log;
 
 my $fakefile = "yes\nno\nyes\n";
-
 open my $fh, "<", \$fakefile, or die "could not open fake file: $!";
-
 *STDIN = $fh;
 
 Log::new('tests/test.csv');
-my $result_key   = "Anna";
-is( $result_key, "Anna", "Test does nothing yet" );
 
 close $fh;
 
