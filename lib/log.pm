@@ -17,8 +17,11 @@ sub new {
 
         while ( my $row = $csv->getline( $fh ) ) {
             my $time = $row->[0];
-            #my $activity = $row->[1];
+            my $activity = $row->[1];
             print $time;
+            if ($activity) {
+              print $activity;
+            }
             print "is time correct?\n";
             chomp(my $answer = <STDIN>);
             if ($answer eq "yes") {
