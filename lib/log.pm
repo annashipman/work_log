@@ -33,9 +33,11 @@ sub new {
 
     $csv->eol ("\r\n");
 
-    open $fh, ">:encoding(utf8)", "new.csv" or die "new.csv: $!";
+    open $fh, ">:encoding(utf8)", "out/new.csv" or die "out/new.csv: $!";
     $csv->print ($fh, $_) for @rows;
-    close $fh or die "new.csv: $!";
+    close $fh or die "out/new.csv: $!";
+
+}
 
 }
 

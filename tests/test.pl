@@ -13,7 +13,7 @@ Log::new('tests/test.csv');
 close $fh;
 
 my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
-open $fh, "<", "new.csv", or die "could not open new.csv: $!";
+open $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
 
 my $row = $csv->getline( $fh );
 is_deeply ( $row, ["A0","A1","A2","A3"], "A row is yes" );
