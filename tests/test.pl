@@ -25,11 +25,4 @@ $row = $csv->getline( $fh );
 is ($row, undef, "There are only two rows");
 
 
-$fakefile = "nothing";
-open $fh, "<", \$fakefile, or die "could not open fake file: $!";
-*STDIN = $fh;
-
-Log::new('tests/not_csv.csv');
-is (1, 1, "what do I need to do to make it die?");
-
 done_testing();
