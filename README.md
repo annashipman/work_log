@@ -3,4 +3,4 @@ Work Log
 
 Unit tests:
 
-`perl -I/location-of-library/lib tests/test.pl`
+`perl -I/$PWD/lib tests/test.pl`
