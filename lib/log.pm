@@ -22,9 +22,6 @@ sub new {
         # no handling of errors, blank lines, day headimgs yet
 
 §       # So, assume all times are correctly formatted
-        # 24hr, split with a hyphen
-        # Hmm... would like to split at hyphen but without the internet
-        # cannot guess how. So instead, assume they are all of the format
         # HH.MM-HH.MM in the 24-hour clock
 
         my $start_hr  = substr $time, 0, 1;
@@ -32,14 +29,13 @@ sub new {
         my $end_hr    = substr $time, 6, 7;
         my $end_min   = substr $time, 9, 10;
 
-        # wow, that's hacky
-        # now what? I feel like I'm reinventing the wheel here
-        # surely there are time functions in perl
-        # but I can't guess what they're called to search the docs
+        # we are assuming the string to number conversion is no problem
+        my $hours_in_minutes = ($end_hr - $start_hr)* 60;
 
-        # fake the calculation for now
-        my $time_elapsed = 70;
+        my $minutes = $end_min - $start_min;
 
+        # min_hours + minutes (which will subtract if answer is negative)
+        my $time_elapsed = $hours_in_minutes + $minutes;
 
         $row->[0] = $time_elapsed;
 
