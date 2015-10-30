@@ -18,11 +18,7 @@ sub new {
         while ( my $row = $csv->getline( $fh ) ) {
             my $time = $row->[0];
             print $time;
-            print "is time correct?\n";
-            chomp(my $answer = <STDIN>);
-            if ($answer eq "yes") {
-              push @rows, $row;
-            }
+            push @rows, $row;
         }
     $csv->eof or $csv->error_diag();
     close $fh;
