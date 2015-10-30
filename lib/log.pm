@@ -17,11 +17,8 @@ sub new {
 
         while ( my $row = $csv->getline( $fh ) ) {
             my $time = $row->[0];
-            my $activity = $row->[1];
+            get_activity_type($row);
             print $time;
-            if ($activity) {
-              print $activity;
-            }
             print "is time correct?\n";
             chomp(my $answer = <STDIN>);
             if ($answer eq "yes") {
@@ -39,6 +36,16 @@ sub new {
 
 }
 
+sub get_activity_type(){
+  my $row = shift;
+  my $activity = $row->[1];
+  if ($activity) {
+    print "What kind of activity is " . $activity . "?\n";
+    chomp(my $answer = <STDIN>);
+    if ($answer) {
+      print $answer;
+    }
+  }
 }
 
 1;
