@@ -4,16 +4,10 @@ use Test::More;
 use Text::CSV;
 use Log;
 
-my $fakefile = "yes\nno\nyes\n";
-open my $fh, "<", \$fakefile, or die "could not open fake file: $!";
-*STDIN = $fh;
-
 Log::new('tests/test.csv');
 
-close $fh;
-
 my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
-open $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
+open my $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
 
 my $row = $csv->getline( $fh );
 is_deeply ( $row, ["A0","A1","A2","A3"], "A row is yes" );
