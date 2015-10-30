@@ -15,11 +15,11 @@ sub new {
     open my $fh, "<:encoding(utf8)", $csv_name
         or die "Cannot use " . $csv_name . ": $!";
 
-        while ( my $row = $csv->getline( $fh ) ) {
-            my $time = $row->[0];
-            print $time;
-            push @rows, $row;
-        }
+    while ( my $row = $csv->getline( $fh ) ) {
+        my $time = $row->[0];
+        print $time;
+        push @rows, $row;
+    }
     $csv->eof or $csv->error_diag();
     close $fh;
 
