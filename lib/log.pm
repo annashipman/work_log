@@ -21,7 +21,7 @@ sub new {
         # work out how many minutes in the time I've been given
         # no handling of errors, blank lines, day headimgs yet
 
-§       # So, assume all times are correctly formatted
+        # So, assume all times are correctly formatted
         # HH.MM-HH.MM in the 24-hour clock
 
         my $start_hr  = substr $time, 0, 1;
