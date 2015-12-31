@@ -19,25 +19,19 @@ open my $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
 # 50 55 10 5 10 10 20 35 50 15 20 10 10 15 15 20
 
 my $row = $csv->getline( $fh );
-my $time = $row->[0];
-is ( $time, 70 );
+is_deeply ( $row, ["70","Sprint planning",""] );
 
 $row = $csv->getline( $fh );
-$time = $row->[0];
-is ( $time, 55 );
+is_deeply ( $row, ["55","Email",""] );
 
 $row = $csv->getline( $fh );
-$time = $row->[0];
-is ( $time, 25 );
+is_deeply ( $row, ["25","Blog post",""] );
 
 $row = $csv->getline( $fh );
-$time = $row->[0];
-is ( $time, 15 );
+is_deeply ( $row, ["15","Email",""] );
 
 $row = $csv->getline( $fh );
-$time = $row->[0];
-is ( $time, 15 );
-
+is_deeply ( $row, ["15","Reading up about shared parental leave",""] );
 
 
 done_testing();
