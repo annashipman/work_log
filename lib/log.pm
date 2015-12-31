@@ -42,6 +42,9 @@ sub new {
           $row->[0] = $time_elapsed;
 
           push @rows, $row;
+        } elsif ( is_workday($time) ) {
+          $row = ["Workday"];
+          push @rows, $row;
         }
     }
     $csv->eof or $csv->error_diag();
@@ -52,6 +55,21 @@ sub new {
     open $fh, ">:encoding(utf8)", "out/new.csv" or die "out/new.csv: $!";
     $csv->print ($fh, $_) for @rows;
     close $fh or die "out/new.csv: $!";
+
+}
+
+sub is_workday {
+  my $day = shift;
+
+  if ( index($day, "Monday") != -1  ||
+       index($day, "Tuesday") != -1  ||
+       index($day, "Wednesday") != -1  ||
+       index($day, "Thursday") != -1  ||
+       index($day, "Friday") != -1 ) {
+    return 1;
+  } else {
+    return 0;
+  }
 
 }
 
