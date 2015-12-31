@@ -42,6 +42,9 @@ sub new {
           $row->[0] = $time_elapsed;
 
           push @rows, $row;
+        } elsif ( is_holiday($time) ) {
+          $row = ["Holiday"];
+          push @rows, $row;
         } elsif ( is_workday($time) ) {
           $row = ["Workday"];
           push @rows, $row;
@@ -70,7 +73,18 @@ sub is_workday {
   } else {
     return 0;
   }
+}
 
+sub is_holiday {
+  my $day = shift;
+
+  if ( index($day, "Saturday") != -1  ||
+       index($day, "Sunday") != -1  ||
+       index($day, "Holiday") != -1 ) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 1;

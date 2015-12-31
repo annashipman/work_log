@@ -130,5 +130,11 @@ is_deeply ( $row, ["15","Blog post",""] );
 $row = $csv->getline( $fh );
 is_deeply ( $row, ["20","Email",""] );
 
+$row = $csv->getline( $fh );
+is_deeply ( $row, ["Holiday"] );
+
+$row = $csv->getline( $fh );
+is_deeply ( $row, ["55","Email",""] );
+
 
 done_testing();
