@@ -44,6 +44,3 @@ At the moment I'm thinking pipe to one another, i.e. pipe output of one CV
 to input of next thing, but that's not very intuitive. Better would be just to
 give the correct flags for what I want to do and perhaps always have it parse
 the time at the beginning?
-
-
-Next step: have file ignore lines that do not contain hyphens?

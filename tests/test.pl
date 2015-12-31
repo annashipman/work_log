@@ -20,23 +20,23 @@ open my $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
 
 my $row = $csv->getline( $fh );
 my $time = $row->[0];
-is ( $time, 2 );
-
-$row = $csv->getline( $fh );
-$time = $row->[0];
-is ( $time, 0 );
-
-$row = $csv->getline( $fh );
-$time = $row->[0];
 is ( $time, 70 );
 
 $row = $csv->getline( $fh );
 $time = $row->[0];
-is ( $time, 0 );
+is ( $time, 55 );
 
 $row = $csv->getline( $fh );
 $time = $row->[0];
-is ( $time, 55 );
+is ( $time, 25 );
+
+$row = $csv->getline( $fh );
+$time = $row->[0];
+is ( $time, 15 );
+
+$row = $csv->getline( $fh );
+$time = $row->[0];
+is ( $time, 15 );
 
 
 

@@ -17,30 +17,32 @@ sub new {
 
     while ( my $row = $csv->getline( $fh ) ) {
         my $time = $row->[0];
+        my $substr = "-";
 
-        #TO DO:
-        # Day headings
-        # blanks
-        # incorrectly formatted
+        # Naive - if it doesn't have a hyphen, it's not a time
+        if (index($time, $substr) != -1) {
 
-        # So, assume all times are correctly formatted
-        # HH.MM-HH.MM in the 24-hour clock
+          #TO DO:
+          # incorrectly formatted time
 
-        my $start_hr  = substr $time, 0, 2;
-        my $start_min = substr $time, 3, 2;
-        my $end_hr    = substr $time, 6, 2;
-        my $end_min   = substr $time, 9, 2;
+          # HH.MM-HH.MM in the 24-hour clock
 
-        my $hours_in_minutes = ($end_hr - $start_hr)* 60;
+          my $start_hr  = substr $time, 0, 2;
+          my $start_min = substr $time, 3, 2;
+          my $end_hr    = substr $time, 6, 2;
+          my $end_min   = substr $time, 9, 2;
 
-        my $minutes = $end_min - $start_min;
+          my $hours_in_minutes = ($end_hr - $start_hr)* 60;
 
-        # min_hours + minutes (which will subtract if answer is negative)
-        my $time_elapsed = $hours_in_minutes + $minutes;
+          my $minutes = $end_min - $start_min;
 
-        $row->[0] = $time_elapsed;
+          # min_hours + minutes (which will subtract if answer is negative)
+          my $time_elapsed = $hours_in_minutes + $minutes;
 
-        push @rows, $row;
+          $row->[0] = $time_elapsed;
+
+          push @rows, $row;
+        }
     }
     $csv->eof or $csv->error_diag();
     close $fh;
