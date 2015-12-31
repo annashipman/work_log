@@ -10,10 +10,10 @@ my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
 open my $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
 
 
-#my $row = $csv->getline( $fh );
-#is_deeply ( $row, ["Workday"] );
-
 my $row = $csv->getline( $fh );
+is_deeply ( $row, ["Workday"] );
+
+$row = $csv->getline( $fh );
 is_deeply ( $row, ["70","Sprint planning",""] );
 
 $row = $csv->getline( $fh );
@@ -79,8 +79,8 @@ is_deeply ( $row, ["5","Pivotal story",""] );
 $row = $csv->getline( $fh );
 is_deeply ( $row, ["15","Email",""] );
 
-#$row = $csv->getline( $fh );
-#is_deeply ( $row, ["Workday"] );
+$row = $csv->getline( $fh );
+is_deeply ( $row, ["Workday"] );
 
 $row = $csv->getline( $fh );
 is_deeply ( $row, ["50","Blog post",""] );
