@@ -18,18 +18,19 @@ sub new {
     while ( my $row = $csv->getline( $fh ) ) {
         my $time = $row->[0];
 
-        # work out how many minutes in the time I've been given
-        # no handling of errors, blank lines, day headimgs yet
+        #TO DO:
+        # Day headings
+        # blanks
+        # incorrectly formatted
 
         # So, assume all times are correctly formatted
         # HH.MM-HH.MM in the 24-hour clock
 
-        my $start_hr  = substr $time, 0, 1;
-        my $start_min = substr $time, 3, 4;
-        my $end_hr    = substr $time, 6, 7;
-        my $end_min   = substr $time, 9, 10;
+        my $start_hr  = substr $time, 0, 2;
+        my $start_min = substr $time, 3, 2;
+        my $end_hr    = substr $time, 6, 2;
+        my $end_min   = substr $time, 9, 2;
 
-        # we are assuming the string to number conversion is no problem
         my $hours_in_minutes = ($end_hr - $start_hr)* 60;
 
         my $minutes = $end_min - $start_min;
