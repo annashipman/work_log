@@ -80,6 +80,7 @@ sub is_holiday {
 
   if ( index($day, "Saturday") != -1  ||
        index($day, "Sunday") != -1  ||
+       index($day, "Off") != -1  ||
        index($day, "Holiday") != -1 ) {
     return 1;
   } else {
