@@ -4,10 +4,12 @@ use Test::More;
 use Text::CSV;
 use Log;
 
-Log::new('tests/test.csv');
+my $output_csv = 'out/new.csv';
+
+Log::new('tests/test.csv', $output_csv);
 
 my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
-open my $fh, "<", "out/new.csv", or die "could not open out/new.csv: $!";
+open my $fh, "<", $output_csv, or die "could not open $output_csv: $!";
 
 
 my $row = $csv->getline( $fh );

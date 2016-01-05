@@ -8,6 +8,7 @@ use Text::CSV;
 
 sub new {
     my $input_csv = shift;
+    my $output_csv = shift;
     my @rows;
     my $csv = Text::CSV->new ( { binary => 1 } )
         or die "Cannot use CSV: ".Text::CSV->error_diag ();
@@ -55,9 +56,9 @@ sub new {
 
     $csv->eol ("\r\n");
 
-    open $fh, ">:encoding(utf8)", "out/new.csv" or die "out/new.csv: $!";
+    open $fh, ">:encoding(utf8)", $output_csv or die $output_csv . ": $!";
     $csv->print ($fh, $_) for @rows;
-    close $fh or die "out/new.csv: $!";
+    close $fh or die $output_csv . ": $!";
 
 }
 
