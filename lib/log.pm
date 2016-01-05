@@ -7,13 +7,13 @@ use Text::CSV;
 
 
 sub new {
-    my $csv_name = shift;
+    my $input_csv = shift;
     my @rows;
     my $csv = Text::CSV->new ( { binary => 1 } )
         or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
-    open my $fh, "<:encoding(utf8)", $csv_name
-        or die "Cannot use " . $csv_name . ": $!";
+    open my $fh, "<:encoding(utf8)", $input_csv
+        or die "Cannot use " . $input_csv . ": $!";
 
     while ( my $row = $csv->getline( $fh ) ) {
         my $time = $row->[0];
