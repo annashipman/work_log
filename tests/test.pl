@@ -8,10 +8,11 @@ Log::new('tests/test.csv', $output_csv);
 
 my $csv = Text::CSV->new ( { binary => 1 } ) or die "died";
 open my $fh, "<", $output_csv, or die "could not open $output_csv: $!";
+my $row;
 
 describe "reading the input" => sub {
 
-  my $row = $csv->getline( $fh );
+  $row = $csv->getline( $fh );
   is_deeply ( $row, ["Workday"] );
 
   $row = $csv->getline( $fh );
