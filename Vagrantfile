@@ -16,6 +16,7 @@ Vagrant.configure(2) do |config|
     # Perl
     sudo apt-get install -y cpanminus
     cpanm Text::CSV
+    cpanm Test::Spec
   SHELL
 
 end

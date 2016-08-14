@@ -1,6 +1,4 @@
-use strict;
-use warnings;
-use Test::More;
+use Test::Spec;
 use Text::CSV;
 use Log;
 
@@ -144,12 +142,14 @@ is_deeply ( $row, ["Holiday"] );
 $row = $csv->getline( $fh );
 is_deeply ( $row, ["50","Email",""] );
 
-$row = $csv->getline( $fh );
-is_deeply ( $row, ["Holiday"] );
+describe "reading the input" => sub {
+  it "identifies holidays" => sub {
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Holiday"] );
 
-$row = $csv->getline( $fh );
-is_deeply ( $row, ["45","Email",""] );
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["45","Email",""] );
+  };
+};
 
-
-
-done_testing();
+runtests unless caller;
