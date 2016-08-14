@@ -131,19 +131,21 @@ describe "reading the input" => sub {
   $row = $csv->getline( $fh );
   is_deeply ( $row, ["20","Email",""] );
 
-  $row = $csv->getline( $fh );
-  is_deeply ( $row, ["Holiday"] );
+  it "identifies 'Holiday' as holiday" => sub {
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Holiday"] );
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["55","Email",""] );
+  };
 
-  $row = $csv->getline( $fh );
-  is_deeply ( $row, ["55","Email",""] );
+  it "indentifies 'Saturday' as holiday" => sub {
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Holiday"] );
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["50","Email",""] );
+  };
 
-  $row = $csv->getline( $fh );
-  is_deeply ( $row, ["Holiday"] );
-
-  $row = $csv->getline( $fh );
-  is_deeply ( $row, ["50","Email",""] );
-
-  it "identifies holidays" => sub {
+  it "identifies 'Day Off' as holiday" => sub {
     $row = $csv->getline( $fh );
     is_deeply ( $row, ["Holiday"] );
     $row = $csv->getline( $fh );
