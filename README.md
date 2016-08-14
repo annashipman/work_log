@@ -6,6 +6,10 @@ I spend on things.
 Contributions are *not* welcome; this is for me to mess
 around refreshing my perl skills.
 
+## Quick start
+
+There is a Vagrant box set up; run the unit tests.
+
 ## Unit tests
 
 `perl -I/$PWD/lib tests/test.pl`
@@ -44,3 +48,7 @@ At the moment I'm thinking pipe to one another, i.e. pipe output of one CV
 to input of next thing, but that's not very intuitive. Better would be just to
 give the correct flags for what I want to do and perhaps always have it parse
 the time at the beginning?
+
+## Next steps
+
+How would I run what I have now as a command line tool?
