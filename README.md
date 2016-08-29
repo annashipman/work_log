@@ -6,6 +6,10 @@ I spend on things.
 Contributions are *not* welcome; this is for me to mess
 around refreshing my perl skills.
 
+## Usage
+
+`perl -I/$PWD/lib wl.pl [$input_csv $output_scv]`
+
 ## Quick start
 
 There is a Vagrant box set up; run the unit tests.
