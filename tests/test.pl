@@ -148,6 +148,7 @@ describe "reading the input" => sub {
     is_deeply ( $row, ["50","Email",""] );
   };
 
+  #if these are two tests, both fail. Why?
   it "identifies 'Day Off' as holiday" => sub {
     $row = $csv->getline( $fh );
     is_deeply ( $row, ["Holiday"] );
