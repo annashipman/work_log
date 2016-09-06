@@ -28,18 +28,7 @@ sub new {
 
           # HH.MM-HH.MM in the 24-hour clock
 
-          my $start_hr  = substr $time, 0, 2;
-          my $start_min = substr $time, 3, 2;
-          my $end_hr    = substr $time, 6, 2;
-          my $end_min   = substr $time, 9, 2;
-
-          my $hours_in_minutes = ($end_hr - $start_hr)* 60;
-
-          my $minutes = $end_min - $start_min;
-
-          # min_hours + minutes (which will subtract if answer is negative)
-          my $time_elapsed = $hours_in_minutes + $minutes;
-
+          my $time_elapsed = get_time_elapsed( $time );
           $row->[0] = $time_elapsed;
 
           push @rows, $row;
@@ -60,6 +49,24 @@ sub new {
     $csv->print ($fh, $_) for @rows;
     close $fh or die $output_csv . ": $!";
 
+}
+
+sub get_time_elapsed {
+  my $time = shift;
+
+  my $start_hr  = substr $time, 0, 2;
+  my $start_min = substr $time, 3, 2;
+  my $end_hr    = substr $time, 6, 2;
+  my $end_min   = substr $time, 9, 2;
+
+  my $hours_in_minutes = ($end_hr - $start_hr)* 60;
+
+  my $minutes = $end_min - $start_min;
+
+  # min_hours + minutes (which will subtract if answer is negative)
+  my $time_elapsed = $hours_in_minutes + $minutes;
+
+  return $time_elapsed;
 }
 
 sub is_workday {
