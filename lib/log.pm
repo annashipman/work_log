@@ -16,16 +16,23 @@ sub new {
     open my $fh, "<:encoding(utf8)", $input_csv
         or die "Cannot use " . $input_csv . ": $!";
 
+    my $minutes_total = 0;
+
     while ( my $row = $csv->getline( $fh ) ) {
         my $col_1 = $row->[0];
 
         if ( is_time($col_1) ) {
           my $time_elapsed = get_time_elapsed( $col_1 );
           $row->[0] = $time_elapsed;
+          $minutes_total = $minutes_total + $time_elapsed;
         } elsif ( is_holiday($col_1) ) {
+          print_previous_days_total($minutes_total);
           $row = ["Holiday"];
+          $minutes_total = 0;
         } elsif ( is_workday($col_1) ) {
+          print_previous_days_total($minutes_total);
           $row = ["Workday"];
+          $minutes_total = 0;
         }
         if ( $col_1 ) {
           push @rows, $row;
@@ -40,6 +47,12 @@ sub new {
     $csv->print ($fh, $_) for @rows;
     close $fh or die $output_csv . ": $!";
 
+}
+
+sub print_previous_days_total {
+  my $total = shift;
+  my $hours_total = $total/60;
+  print $hours_total . "\n";
 }
 
 sub get_time_elapsed {
