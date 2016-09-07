@@ -14,6 +14,9 @@ describe "reading the input" => sub {
 
   it "creates output CSV with total time and activity" => sub {
     $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Total: 0"] );
+
+    $row = $csv->getline( $fh );
     is_deeply ( $row, ["Workday"] );
 
     $row = $csv->getline( $fh );
@@ -83,6 +86,9 @@ describe "reading the input" => sub {
     is_deeply ( $row, ["15","Email",""] );
 
     $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Total: 7.41666666666667"] );
+
+    $row = $csv->getline( $fh );
     is_deeply ( $row, ["Workday"] );
 
     $row = $csv->getline( $fh );
@@ -132,6 +138,9 @@ describe "reading the input" => sub {
 
     $row = $csv->getline( $fh );
     is_deeply ( $row, ["20","Email",""] );
+
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Total: 6.83333333333333"] );
   };
 
   it "identifies 'Holiday' as holiday" => sub {
@@ -139,6 +148,8 @@ describe "reading the input" => sub {
     is_deeply ( $row, ["Holiday"] );
     $row = $csv->getline( $fh );
     is_deeply ( $row, ["55","Email",""] );
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Total: 0.916666666666667"] );
   };
 
   it "indentifies 'Saturday' as holiday" => sub {
@@ -146,6 +157,8 @@ describe "reading the input" => sub {
     is_deeply ( $row, ["Holiday"] );
     $row = $csv->getline( $fh );
     is_deeply ( $row, ["50","Email",""] );
+    $row = $csv->getline( $fh );
+    is_deeply ( $row, ["Total: 0.833333333333333"] );
   };
 
   #if these are two tests, both fail. Why?

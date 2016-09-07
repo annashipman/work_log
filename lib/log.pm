@@ -26,11 +26,13 @@ sub new {
           $row->[0] = $time_elapsed;
           $minutes_total = $minutes_total + $time_elapsed;
         } elsif ( is_holiday($col_1) ) {
-          print_previous_days_total($minutes_total);
+          my $hours = "Total: " . previous_days_total_hours($minutes_total);
+          push @rows, [$hours];
           $row = ["Holiday"];
           $minutes_total = 0;
         } elsif ( is_workday($col_1) ) {
-          print_previous_days_total($minutes_total);
+          my $hours = "Total: " . previous_days_total_hours($minutes_total);
+          push @rows, [$hours];
           $row = ["Workday"];
           $minutes_total = 0;
         }
@@ -49,10 +51,9 @@ sub new {
 
 }
 
-sub print_previous_days_total {
+sub previous_days_total_hours {
   my $total = shift;
-  my $hours_total = $total/60;
-  print $hours_total . "\n";
+  return $total / 60;
 }
 
 sub get_time_elapsed {
