@@ -55,4 +55,7 @@ the time at the beginning?
 
 ## Next steps
 
-How would I run what I have now as a command line tool?
+Work out how to total per day.
+Incorrectly formatted time
+A better way to identify time than whether or not it has a hyphen (and/or a way to clean up times before they come in)
+

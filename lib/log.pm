@@ -20,13 +20,7 @@ sub new {
         my $time = $row->[0];
         my $substr = "-";
 
-        # Naive - if it doesn't have a hyphen, it's not a time
         if (index($time, $substr) != -1) {
-
-          #TO DO:
-          # incorrectly formatted time
-
-          # HH.MM-HH.MM in the 24-hour clock
 
           my $time_elapsed = get_time_elapsed( $time );
           $row->[0] = $time_elapsed;
