@@ -17,18 +17,18 @@ sub new {
         or die "Cannot use " . $input_csv . ": $!";
 
     while ( my $row = $csv->getline( $fh ) ) {
-        my $time = $row->[0];
+        my $col_1 = $row->[0];
         my $substr = "-";
 
-        if (index($time, $substr) != -1) {
-          my $time_elapsed = get_time_elapsed( $time );
+        if (index($col_1, $substr) != -1) {
+          my $time_elapsed = get_time_elapsed( $col_1 );
           $row->[0] = $time_elapsed;
-        } elsif ( is_holiday($time) ) {
+        } elsif ( is_holiday($col_1) ) {
           $row = ["Holiday"];
-        } elsif ( is_workday($time) ) {
+        } elsif ( is_workday($col_1) ) {
           $row = ["Workday"];
         }
-        if ( $time ) {
+        if ( $col_1 ) {
           push @rows, $row;
         }
     }
