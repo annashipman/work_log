@@ -59,3 +59,13 @@ Work out how to total per day.
 Incorrectly formatted time
 A better way to identify time than whether or not it has a hyphen (and/or a way to clean up times before they come in)
 
+### Usage
+
+wl [flags] $input_csv [output_csv]
+ flags for:
+
+- hours per week
+- hours per activity (this will require a specifically named input where you have categorised activities, or will ask you to do this upfront (will prompt)
+- recategorise activities (i.e. in the case where you already have that csv and want to look ats omething different; should give you an option to save it with a new name...?)
+
+Maybe output should be to a different folder so you can commit information un-publically...
