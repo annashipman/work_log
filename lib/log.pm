@@ -21,16 +21,14 @@ sub new {
         my $substr = "-";
 
         if (index($time, $substr) != -1) {
-
           my $time_elapsed = get_time_elapsed( $time );
           $row->[0] = $time_elapsed;
-
-          push @rows, $row;
         } elsif ( is_holiday($time) ) {
           $row = ["Holiday"];
-          push @rows, $row;
         } elsif ( is_workday($time) ) {
           $row = ["Workday"];
+        }
+        if ( $time ) {
           push @rows, $row;
         }
     }
