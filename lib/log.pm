@@ -18,9 +18,8 @@ sub new {
 
     while ( my $row = $csv->getline( $fh ) ) {
         my $col_1 = $row->[0];
-        my $substr = "-";
 
-        if (index($col_1, $substr) != -1) {
+        if ( is_time($col_1) ) {
           my $time_elapsed = get_time_elapsed( $col_1 );
           $row->[0] = $time_elapsed;
         } elsif ( is_holiday($col_1) ) {
@@ -59,6 +58,12 @@ sub get_time_elapsed {
   my $time_elapsed = $hours_in_minutes + $minutes;
 
   return $time_elapsed;
+}
+
+sub is_time {
+  my $col_1 = shift;
+  my $substr = "-";
+  return ( index($col_1, $substr) != -1 );
 }
 
 sub is_workday {
