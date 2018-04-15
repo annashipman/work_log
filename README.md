@@ -59,7 +59,7 @@ Work out how to total per day.
 Incorrectly formatted time
 A better way to identify time than whether or not it has a hyphen (and/or a way to clean up times before they come in)
 
-### Usage
+### Usage
 
 wl [flags] $input_csv [output_csv]
  flags for:
