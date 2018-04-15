@@ -55,9 +55,11 @@ the time at the beginning?
 
 ## Next steps
 
-Work out how to total per day.
-Incorrectly formatted time
-A better way to identify time than whether or not it has a hyphen (and/or a way to clean up times before they come in)
+- Work out how to total per day
+- Incorrectly formatted time
+- A better way to identify time than whether or not it has a hyphen (and/or a way to clean up times before they come in)
+
+Note: There is a `done.csv` in my folder of `done_docs`.
 
 ### Usage
 
